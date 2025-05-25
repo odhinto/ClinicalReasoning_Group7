@@ -1,82 +1,82 @@
-# 🧠 Clinical Reasoning in Kenyan Healthcare Using AI
-**Data Science Capstone Project**
+# 🧠 Clinical Reasoning in Kenyan Healthcare Using AI (Enhanced Version)
+
+This enhanced markdown outlines a capstone project using NLP to evaluate whether AI models like GPT-4 can emulate the reasoning of real clinicians in Kenya.
+
+---
 
 ## 🎯 Problem Statement
-Can AI models like GPT-4 replicate or assist clinical reasoning demonstrated by Kenyan healthcare professionals?
+Can we build models or evaluation tools to measure how well AI can replicate human clinical judgment in low-resource healthcare settings?
 
 ---
 
-## 🔍 Objectives
-- Extract structured features (e.g., experience) from free-text nurse prompts.
-- Evaluate semantic similarity between clinician and LLM responses.
-- Assess tone, empathy, and sentiment across responses.
-- Measure diagnostic accuracy using SNOMED CT codes.
-- Perform manual and automatic evaluation of AI output quality.
+## 🧪 Objectives
+- Extract structured information (like nurse experience) using RegEx.
+- Use sentence embeddings to compare AI vs human responses.
+- Analyze tone and empathy with sentiment analysis.
+- Use NLP foundations (Bag-of-Words, TF-IDF) for text statistics.
+- Apply classification (predict medical specialty from prompt).
 
 ---
 
-## 📊 Dataset Overview
-- 400 training and 100 test medical vignette samples.
-- Metadata includes: County, Health level, Nursing Competency, Years of Experience.
-- Text fields: Prompt, Clinician, GPT-4, LLAMA, GEMINI responses.
-- Labels: SNOMED diagnostic codes (DDX SNOMED).
+## 🗃️ Dataset Summary
+- 400 training samples, 100 test samples.
+- Fields: Prompt, Clinician response, GPT-4, LLAMA, GEMINI.
+- Metadata: County, Health level, Nursing Competency, Experience.
+- Labels: SNOMED CT diagnostic codes.
 
 ---
 
-## 🧼 Preprocessing
-- Extracted nurse experience from prompt text using regex.
-- Normalized SNOMED CT codes into lists.
-- Validated experience metadata against parsed prompt values.
+## 🔧 Techniques Used
+
+### ✅ Regular Expressions
+Used to extract number of years of experience from nurse prompts.
+
+### ✅ Word Embeddings
+Used `SentenceTransformer` (MiniLM) to compare how close AI and clinician answers are in meaning.
+
+### ✅ Bag-of-Words (BoW)
+Used `CountVectorizer` to find most common words and build a word frequency matrix.
+
+### ✅ Corpus Statistics
+Counted tokens, characters, vocabulary size, and average words per clinician response.
+
+### ✅ TF-IDF Vectorization
+Used `TfidfVectorizer` to detect which words carry more weight in responses.
+
+### ✅ Text Classification
+Built a Naive Bayes classifier to predict the medical specialty (Clinical Panel) based on the prompt.
 
 ---
 
-## 🧠 Modeling Approach
-- Sentence embeddings using `all-MiniLM-L6-v2`.
-- Cosine similarity to compare clinician vs AI outputs.
-- VADER sentiment analysis to capture empathy/tone.
-- Planned lexical metrics: BLEU, ROUGE.
+## 📊 Evaluation Metrics
+- **Cosine Similarity** (semantic overlap)
+- **Sentiment Score** (using VADER)
+- **Classification Report** (precision, recall, F1)
 
 ---
 
-## 📊 Exploratory Data Analysis (EDA)
-- Counties and facility types well distributed.
-- Experience level spans from junior to senior nurses.
-- Word clouds generated for prompt overview.
-- Diagnosis count per case: mostly 2–5 SNOMED codes.
+## 🔍 Manual Review
+Spot-checked AI responses against human clinician answers for reasoning quality and tone.
 
 ---
 
-## 📈 Results Summary
-- Most prompts matched their metadata fields correctly.
-- GPT-4 responses had high cosine similarity (~0.85) to clinician answers.
-- Sentiment variation observed: clinicians more cautious/empathic.
-- Manual review highlighted tone differences and hallucinations in LLM outputs.
+## 💡 Key Insights
+- GPT-4 had high similarity but sometimes lacked empathy.
+- Nurse experience in the prompt matched metadata ~100%.
+- SNOMED codes varied per case but were properly extractable.
 
 ---
 
-## 💬 Discussion
-- LLMs capture structure and logic but often miss nuance and context.
-- Empathy and clinical tone need specific training or rule-based refinement.
-- SNOMED evaluation required for factual correctness beyond text similarity.
-
----
-
-## ✅ Recommendations
-- Deploy AI as assistive, not standalone, tools in clinical settings.
-- Implement SNOMED-aware evaluators for fact checking.
-- Tune models on regional language/guidelines to increase relevance.
+## 📈 Recommendations
+- Use AI as decision support only, not as replacements.
+- Highlight and validate medical facts with SNOMED-based rules.
+- Train AI on regional data for cultural and clinical safety.
 
 ---
 
 ## 🔮 Future Work
-- Evaluate LLAMA and GEMINI thoroughly.
-- Use topic modeling (e.g., BERTopic) to cluster vignettes by theme.
-- Extend to multi-turn conversations and follow-up question modeling.
-- Build a RAG-based interactive assistant for field nurses.
+- Evaluate LLAMA and GEMINI on same metrics.
+- Use topic modeling (e.g., BERTopic) to group vignettes.
+- Add multi-turn Q&A and chat capability.
+- Develop a real-time RAG system for field use.
 
----
-
-## 📎 Appendix
-- Experience parsing from prompt text.
-- SNOMED CT parsing utilities.
-- Manual review samples.
